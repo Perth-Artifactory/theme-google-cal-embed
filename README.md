@@ -42,7 +42,7 @@ _Make sure you have write permissions on the folder you are saving to_
 
 5. Render the saved file in an iframe
 
-```
+```html
 <iframe src="calendar/calendar.html" frameborder="0" height="750"></iframe>
 ```
 
