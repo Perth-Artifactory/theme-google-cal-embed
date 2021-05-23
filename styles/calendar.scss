@@ -1,17 +1,38 @@
 $cal-font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
-$cal-link: #337ab7;
-$cal-body: #a5a09b;
+$cal-link: #e32000;
+$cal-link-dark: darken($cal-link,5%);
+$cal-link-darker: darken($cal-link,10%);
+$cal-body: #141414;
 $cal-body-dark: darken($cal-body,5%);
 $cal-body-darker: darken($cal-body,10%);
 $cal-body-light: lighten($cal-body,5%);
 $cal-body-lighter: lighten($cal-body,10%);
-$cal-text: #5e5c59;
+$cal-text: white;
+$cal-text-dark: darken($cal-text,15%);
+$cal-text-darker: darken($cal-text,50%);
 
-$bubble-title-text: #9f8c74;
+$bubble-title-text: #e32000;
 $bubble-hr-bg: $bubble-title-text;
 
-$loading-tag-bg: $cal-link;
+$loading-tag-bg: $cal-link-darker;
 $loading-tag-text: white;
+
+// Date Selector
+$dp-header: $cal-body-darker;
+$dp-header-text: $cal-text;
+$dp-header-text-weekend: $cal-text;
+$dp-bg: $cal-body;
+$dp-bg-weekend: $cal-body-light;
+$dp-text: $cal-text;
+$dp-text-off: $cal-text-darker;
+$dp-selected-bg: $cal-body-lighter;
+$dp-selected-weekend-bg: $cal-body-lighter;
+$dp-selected-text: $cal-text;
+$dp-today-bg: $cal-body-lighter;
+$dp-today: $cal-text;
+$dp-today-border: $cal-link;
+$dp-hover-bg: $cal-link;
+$dp-hover-text: $cal-text;
 
 // Calendar Header Variables
 $cal-header-bg: $cal-body-dark;
@@ -27,14 +48,14 @@ $today-btn-hover-text: $cal-body-light;
 $date-top-text: $cal-text;
 $date-top-bg: $cal-header-bg;
 $date-top-on-bg: $cal-body;
-$date-top-popup-bg: white;
+$date-top-popup-bg: $cal-body-darker;
 $date-top-popup-text: $cal-text;
-$date-top-popup-weekend-bg: darken($date-top-popup-bg,5%);
+$date-top-popup-weekend-bg: lighten($date-top-popup-bg,10%);
 $date-top-popup-weekend-text: lighten($date-top-popup-text,5%);
-$date-top-off-month-text: lighten($date-top-popup-weekend-text,25%);
+$date-top-off-month-text: darken($date-top-popup-weekend-text,50%);
 $date-top-popup-border: $cal-text;
-$date-top-popup-today-bg: lighten(#9f8c74,10%);
-$date-top-popup-today-border: lighten(#9f8c74,5%);
+$date-top-popup-today-bg: $cal-link;
+$date-top-popup-today-border: $cal-link;
 $date-top-popup-today-text: $cal-text;
 
 $tabs-selected-bg: $cal-body;
@@ -43,32 +64,33 @@ $tabs-unselected-bg: $cal-header-bg;
 $tabs-unselected-text: $cal-link;
 
 // Month View Variables
+$day-bg: $cal-body;
+$day-border: $cal-body-lighter;
+$day-text: $cal-text;
+$day-time-text: $cal-link-dark;
+
 $day-header-bg: $cal-body-dark;
-$day-header-border: $cal-body-darker;
+$day-header-border: $day-border;
 
 $day-names-text: $cal-text;
 $day-names-bg: $cal-body;
 
-$day-bg: $cal-body;
-$day-border: $cal-body-dark;
-$day-text: $cal-text;
-$day-time-text: darken(#8e7562,5%);
-
-$day-today-header-bg: $date-top-popup-today-border;
-$day-today-header-border: $date-top-popup-today-border;
+$day-today-header-bg: $cal-link-dark;
+$day-today-header-border: $day-border;
+$day-today-header-text: $cal-text;
 $day-today-bg: $date-top-popup-today-bg;
-$day-today-border: $date-top-popup-today-border;
+$day-today-border: $cal-link-dark;
 
 // Week View Variables
 $wk-day-text: $cal-text;
 
 $wk-today-header-bg: $day-today-header-bg;
-$wk-today-bg: $day-today-bg;
+$wk-today-bg: $cal-body-lighter;
 $wk-today-border: $day-today-border;
 $wk-now-marker: $wk-today-border;
 
-$wk-event-header-bg: $cal-text;
-$wk-event-header-text: #c4c4c4;
+$wk-event-header-bg: $cal-body-lighter;
+$wk-event-header-text: $cal-link-dark;
 $wk-event-bg: $cal-body-dark;
 $wk-event-border: $cal-body-darker;
 $wk-event-text: $cal-text;
@@ -86,6 +108,30 @@ $ag-day-text: $day-text;
 #calendar-content * {
   font-family: $cal-font-family !important;
   -webkit-font-smoothing: antialiased;
+}
+.a, .menu-link {
+  color: $cal-link;
+  text-decoration: none;
+  &:visited{
+    color: $cal-link;
+    text-decoration: none;
+    opacity: 0.42;
+  }
+  &:hover{
+    color: $cal-link;
+    opacity: 0.7;
+    text-decoration: underline;
+  }
+  &:active{
+    color: $cal-link;
+    opacity: 1;
+    text-decoration: none;
+  }
+  &:focus{
+    color: $cal-link;
+    opacity: 1;
+    text-decoration: none;
+  }
 }
 .mv-container {
   font-size: 1em;
@@ -108,11 +154,32 @@ $ag-day-text: $day-text;
 .event-links a, .links a {
   color: $cal-link;
 }
+.event-description, .event-where {
+  color: $cal-text;
+  .a {
+    color: $cal-link;
+    text-decoration: none;
+    &:visited{
+      color: $cal-link;
+      text-decoration: none;
+      opacity: 0.42;
+    }
+    &:hover{
+      opacity: 0.7;
+      text-decoration: underline;
+    }
+    &:active{
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
+}
 .loading {
   color: $loading-tag-text;
   background-color: $loading-tag-bg;
 }
 .bubble-table {
+  background-color: $cal-body;
   .title {
     color: $bubble-title-text !important;
   }
@@ -125,9 +192,13 @@ $ag-day-text: $day-text;
   }
 }
 .bubble-mid {
+  background-color: $cal-body;
   .details {
     padding: 0 2em;
   }
+}
+.bubble-top, .bubble-bottom {
+  background-color: $cal-body;
 }
 .footer {
   background: $cal-body-dark;
@@ -175,28 +246,40 @@ $ag-day-text: $day-text;
 .dp-monthtablediv {
   border: none;
 }
+.dp-cell {
+  background: $dp-bg;
+  color: $dp-text;
+}
+.dp-weekendh {
+  color: $dp-header-text-weekend;
+}
 .dp-offmonth {
-  color: $date-top-off-month-text;
+  color: $dp-text-off;
+}
+.dp-weekend {
+  background: $dp-bg-weekend;
+}
+.dp-weekend-selected, .dp-weekday-selected {
+  color: $dp-selected-text;
+  background: $dp-selected-bg;
+}
+.dp-today, .dp-today-selected {
+  color: $dp-today;
+  background: $dp-today-bg;
+  border-color: $dp-today-border;
 }
 .date-picker-arrow-on {
   background: $date-top-on-bg;
 }
-.dp-popup, .dp-weekday-selected {
+.dp-onhover {
+  background-color: $dp-hover-bg;
+  border-color: $dp-hover-bg;
+  color: $dp-hover-text;
+}
+.dp-popup {
   color: $date-top-popup-text;
   background: $date-top-popup-bg;
   border-color: $date-top-popup-border;
-}
-.dp-weekend-selected {
-  color: $date-top-popup-weekend-text;
-  background: $date-top-popup-weekend-bg;
-}
-.dp-today {
-  color: $date-top-popup-today-text;
-  background: $date-top-popup-today-bg;
-  border-color: $date-top-popup-today-border;
-  &:hover {
-    border-color: $date-top-popup-today-border;
-  }
 }
 .dp-cur, .dp-prev, .dp-next {
   color: $date-top-popup-border;
@@ -233,6 +316,7 @@ img[title~="Print"] {
 .st-dtitle {
   background: $day-header-bg;
   border-color: $day-header-border;
+  color: $cal-text-dark
 }
 .st-bg {
   background: $day-bg;
@@ -241,10 +325,14 @@ img[title~="Print"] {
 .st-dtitle-today {
   background: $day-today-header-bg;
   border-color: $day-today-header-bg;
+  color: $day-today-header-text;
 }
 .st-bg-today, .st-bg-td-first {
   background: $day-today-bg;
   border-color: $day-today-border;
+}
+.st-dtitle-nonmonth {
+  color: $cal-text-darker
 }
 .st-c {
   padding-left: .5rem;
