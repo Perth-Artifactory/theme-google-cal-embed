@@ -4,6 +4,8 @@ Apply a custom stylesheet to an embedded Google Calendar to match the rest of yo
 
 This fork assumes a server initiated pull rather than relying on page loads by shifting the embedded PHP code to a Python3 script intended to be run at regular intervals.
 
+Additionally the scss has been modified to fit with the current them of https://artifactory.org.au
+
 ## Instructions
 Since you can't just inject a stylesheet into an iframe or overwrite the CSS we have to go at it a different way...
 
